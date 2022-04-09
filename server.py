@@ -44,7 +44,7 @@ def readFile():
 tiempoTotal = 0
 def sendData_client(direccion, id):
 
-    #Envía id del cliente
+    #Envia id del cliente
     s.sendto((str(id)+"/"+str(conexiones)+"/"+str(archivo)).encode(), direccion)
 
     # Variable file
