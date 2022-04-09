@@ -17,7 +17,7 @@ BUFFER = 1024*60
 print("\n Server is listing on port :", PORT, "\n")
 
 # Now we need to bind to the above port at server side
-ip = '192.168.147.128'
+ip = 'localhost'
 s.bind((ip, PORT))
 
 # Seleccion

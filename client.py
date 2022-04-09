@@ -26,9 +26,9 @@ s.sendto("Hola".encode(), (ServerIp, PORT))
 
 def getSizeArchivo(numArchivo):
     if(numArchivo == 1):
-        return 100
+        return 100000000
     elif(numArchivo == 2):
-        return 250
+        return 250000000
     else:
         return 13
 
@@ -58,13 +58,18 @@ file = open(f"./ArchivosRecibidos/Cliente{client}-Prueba-{conexiones}.txt", "wb"
 t1 = int(round(time.time() * 1000))
 while True:
     print("Recibiendo")
-    data, addr = s.recvfrom(BUFFER)
-    if 'fin' in data.decode():
+    s.settimeout(5)
+    try:
+        data, addr = s.recvfrom(BUFFER)
+        print("Recibió")
+        file.write(data)
+        print(data.decode())
+        print(not data)
+    except socket.timeout:
+        print("Sale")
         # nothing is received
-        #file transmitting is done
+        # file transmitting is done
         break
-        # write to the file the bytes we just received
-    file.write(data)
 print("Fin recibido")
 t2 = int(round(time.time() * 1000))
 
@@ -73,8 +78,8 @@ file.close()
 print("\n\n File has been copied successfully \n")
 file_size = os.path.getsize(f"./ArchivosRecibidos/Cliente{client}-Prueba-{conexiones}.txt")
 print(file_size)
-if file_size == getSizeArchivo(archivo):
-    print("\n\n Se recibió correctamente el archivo.")
+if file_size >= getSizeArchivo(archivo):
+    print("\n\n Se recibió correctamente el archivo. " + str(file_size))
     s.sendto("Exitoso".encode(), (ServerIp, PORT))
     logs(archivo, client, "Exitoso", t2-t1)
 else:
