@@ -7,7 +7,7 @@ import datetime
 import time
 import os
 
-BUFFER = 1024*64
+BUFFER = 1024*60
 
 # Lets catch the 1st argument as server ip
 if (len(sys.argv) > 1):
@@ -59,7 +59,7 @@ t1 = int(round(time.time() * 1000))
 while True:
     print("Recibiendo")
     data, addr = s.recvfrom(BUFFER)
-    if data.decode() == 'fin':
+    if 'fin' in data.decode():
         # nothing is received
         #file transmitting is done
         break
@@ -71,8 +71,7 @@ t2 = int(round(time.time() * 1000))
 # Close the file opened at server side once copy is completed
 file.close()
 print("\n\n File has been copied successfully \n")
-#file_size = os.path.getsize(f"./ArchivosRecibidos/Cliente{client}-Prueba-{conexiones}.txt")
-file_size = os.path.getsize(f"./ArchivosRecibidos/Cliente1-Prueba-5.txt")
+file_size = os.path.getsize(f"./ArchivosRecibidos/Cliente{client}-Prueba-{conexiones}.txt")
 print(file_size)
 if file_size == getSizeArchivo(archivo):
     print("\n\n Se recibió correctamente el archivo.")

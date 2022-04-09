@@ -13,11 +13,11 @@ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Lets choose one port and start listening on that port
 PORT = 9899
-BUFFER = 1024*64
+BUFFER = 1024*60
 print("\n Server is listing on port :", PORT, "\n")
 
 # Now we need to bind to the above port at server side
-ip = 'localhost'
+ip = '192.168.147.128'
 s.bind((ip, PORT))
 
 # Seleccion
