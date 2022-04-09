@@ -32,16 +32,16 @@ def getSizeArchivo(numArchivo):
     else:
         return 13
 
-def logs(archivo, idThread, Resultado, timeE):
+def logs(archivo, idThread, Resultado, timeE, tamanioArchivo):
     date = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     file = open(f"./ArchivosRecibidos/Logs/{date}-log.txt", "a")
 
     if archivo=="1":
-        file.write("\n Nombre del archivo: file100MB.txt - Tamanio: 100MB")
+        file.write(f"\n Nombre del archivo: file100MB.txt - Tamanio: {tamanioArchivo}MB")
     elif archivo == "2":
-        file.write("\n Nombre del archivo: file250MB.txt - Tamanio: 250MB")
+        file.write(f"\n Nombre del archivo: file250MB.txt - Tamanio: {tamanioArchivo}MB")
     elif archivo == "3":
-        file.write("\n Nombre del archivo: sample1.txt - Tamanio: 13B")
+        file.write(f"\n Nombre del archivo: sample1.txt - Tamanio: {tamanioArchivo}MB")
 
     file.write('\n Conexion con el cliente: ' + str(idThread))
     file.write('\n La entrega del archivo fue: ' + Resultado)
@@ -81,7 +81,7 @@ print(file_size)
 if file_size >= getSizeArchivo(archivo):
     print("\n\n Se recibió correctamente el archivo. " + str(file_size))
     s.sendto("Exitoso".encode(), (ServerIp, PORT))
-    logs(archivo, client, "Exitoso", t2-t1)
+    logs(archivo, client, "Exitoso", t2-t1, file_size/1000)
 else:
     print("\n\n ERROR: No se recibió correctamente el archivo.")
     s.sendto("Fallido".encode(), (ServerIp, PORT))

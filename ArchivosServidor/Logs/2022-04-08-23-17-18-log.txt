@@ -1,0 +1,5 @@
+
+ Nombre del archivo: file100MB.txt - Tamanio: 100MB
+ Conexion con el cliente: 1
+ La entrega del archivo fue: Exitoso
+ El tiempo de ejecucion fue: 0 ms
