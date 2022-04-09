@@ -66,7 +66,7 @@ def sendData_client(direccion, id):
 
 def logs(idCliente, Resultado, timeE):
     date = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-    file = open("./ArchivosServidor/Logs/"+ str(date) + "-log.txt", "a")
+    file = open(f"./ArchivosServidor/Logs/{date}-log.txt", "a")
 
     if archivo == "1":
         file.write("\n Nombre del archivo: file100MB.txt - Tamanio: 100MB")
