@@ -26,7 +26,7 @@ print("1. Archivo 100MB")
 print("2. Archivo 250MB")
 print("3. Archivo prueba")
 archivo = input()
-conexiones = input("Indique el número de conexiones: ")
+conexiones = input("Indique el numero de conexiones: ")
 
 def readFile():
     # Variable file
@@ -56,7 +56,7 @@ def sendData_client(direccion, id):
         print("Enviando")
         s.sendto(sendData, direccion)
         sendData = file.read(BUFFER)
-    print("Fin envío")
+    print("Fin envio")
     t2 = int(round(time.time() * 1000))
     tiempoTotal = t2-t1
     s.sendto("fin".encode(), direccion)
